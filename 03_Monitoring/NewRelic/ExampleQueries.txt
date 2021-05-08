@@ -1,0 +1,56 @@
+Contents
+----> 1. Response Time Queries <----
+
+i. Query all transactions within an App for 
+	Count of Transactions, 95% and 99% response; excluding health and limiting to 1000 rows
+SELECT  count(*) , percentile(duration*1000, 95) as '95%', percentile(duration*1000, 99) as '99%'FROM Transaction FACET name WHERE appName = '<APP_NAME>' AND name NOT LIKE 'WebTransaction/Go/health' SINCE 1 minutes ago LIMIT 1000
+
+ii. Response Times Percentile by App
+SELECT percentile(duration*1000, 99) as '99%', percentile(duration*1000, 95) as '95%', percentile(duration*1000, 90) as '90%', average(duration*1000) as 'avg', max(duration*1000) as 'max' ,count(*) 
+	FROM Transaction FACET name WHERE appName IN('<APP_NAME_1>','<APP_NAME_2>','<APP_NAME_3>' ........)
+	and name not LIKE '%/health' SINCE  1 day ago  LIMIT 100
+--------------------------------------
+
+
+----> 2. Synthetics & Speeds <----
+i. Synthetics Check
+FROM SyntheticCheck SELECT average(duration) WHERE monitorName LIKE '%cf%' OR monitorName LIKE '%health%' FACET monitorName TIMESERIES AUTO
+
+ii. Network Speeds
+SELECT average(duration) as avg_duration, percentile(duration,99) as p99_duration, count(*) as pageViewCount  FROM PageView WHERE appName='<APP_NAME>' FACET userAgentName, userAgentOS SINCE 30 day ago LIMIT MAX
+--------------------------------------
+
+
+----> 3. Error Tables <----
+i. For 5XX Errors
+SELECT filter(count(name), where httpResponseCode = '500') AS '500',
+ filter(count(name), where httpResponseCode = '501') AS '501', filter(count(name), where httpResponseCode = '502') AS '502', filter(count(name), where httpResponseCode = '503') AS '503',
+ filter(count(name), where httpResponseCode = '504') AS '504', filter(count(name), where httpResponseCode = '505') AS '505', filter(count(name), where httpResponseCode = '506') AS '506',
+ filter(count(name), where httpResponseCode = '507') AS '507', filter(count(name), where httpResponseCode = '508') AS '508', filter(count(name), where httpResponseCode = '510') AS '510',
+ filter(count(name), where httpResponseCode = '511') AS '511'
+FROM Transaction facet appName SINCE 24 hours ago
+
+ii. For 4XX Errors
+SELECT filter(count(name), where httpResponseCode = '400') AS '400',
+ filter(count(name), where httpResponseCode = '401') AS '401', filter(count(name), where httpResponseCode = '403') AS '403', filter(count(name), where httpResponseCode = '404') AS '404',
+ filter(count(name), where httpResponseCode = '405') AS '405', filter(count(name), where httpResponseCode = '406') AS '406', filter(count(name), where httpResponseCode = '407') AS '407',
+ filter(count(name), where httpResponseCode = '408') AS '408', filter(count(name), where httpResponseCode = '409') AS '409', filter(count(name), where httpResponseCode = '410') AS '410',
+ filter(count(name), where httpResponseCode = '411') AS '411', filter(count(name), where httpResponseCode = '412') AS '412', filter(count(name), where httpResponseCode = '413') AS '413',
+ filter(count(name), where httpResponseCode = '414') AS '414', filter(count(name), where httpResponseCode = '415') AS '415', filter(count(name), where httpResponseCode = '416') AS '416',
+ filter(count(name), where httpResponseCode = '417') AS '417', filter(count(name), where httpResponseCode = '421') AS '421', filter(count(name), where httpResponseCode = '422') AS '422',
+ filter(count(name), where httpResponseCode = '423') AS '423', filter(count(name), where httpResponseCode = '424') AS '424', filter(count(name), where httpResponseCode = '426') AS '426',
+ filter(count(name), where httpResponseCode = '428') AS '428', filter(count(name), where httpResponseCode = '429') AS '429', filter(count(name), where httpResponseCode = '431') AS '431'
+FROM Transaction facet appName SINCE 24 hours ago
+
+iii. General Error Messages timeseries
+SELECT count(*) FROM JavaScriptError WHERE level = 'ERROR' SINCE 7 day ago TIMESERIES 30 minutes
+
+iv. Specific Error Messages timeseries based on Error Message
+SELECT count(*) FROM JavaScriptError WHERE level = 'ERROR' and errorMessage = '<ERROR MESSAGE HERE>' SINCE 7 day ago TIMESERIES 30 minutes
+
+v. Specific Error Messages timeseries including everything BUT ...
+SELECT count(*) FROM JavaScriptError WHERE level = 'ERROR' and endpoint NOT LIKE 'https://<DOMAIN HERE>%' SINCE 7 day ago TIMESERIES 30 minutes
+
+vi. Specific Error Messages timeseries that looks like something specific ...
+SELECT count(*) FROM JavaScriptError WHERE level = 'ERROR' and endpoint LIKE 'https://<DOMAIN HERE>%' and status!=401 SINCE 7 day ago TIMESERIES 30 minutes
+--------------------------------------

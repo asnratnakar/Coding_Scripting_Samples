@@ -1,0 +1,493 @@
+Contents
+00. Commonly Used Linux Commands
+01. Linux Commands for System Information
+02. Linux Commands for Files & Permissions
+03. Linux Commands for Networking
+04. Linux Commands for Archives and File Compression
+05. Linux Commands for Installing Packages
+06. Linux Search Commands
+07. Linux Commands for SSH Logins
+08. Linux Commands for File Transfers and Management
+09. Linux File and Directory Commands
+10. Linux Commands for Disk Utilities and Usage
+11. Linux Commands for Environment Variables
+12. Linux Commands for System Processes Management
+13. Linux Commands for VI Editing
+14. Linux Commands for File Editors
+15. Linux Commands for File Utilities
+16. Linux Commands for Scripting
+17. Linux Commands for Hardware Information
+18. Linux Commands for Performance Monitoring and Statistics
+19. Linux Commands As Keyboard Shortcuts
+20. Users
+Misc. Linux Misc Commands
+
+
+
+---->00. Commonly Used Linux Commands<----
+Description:	You will most probably find yourself randomly needing to use these Linux command sets to improve your user experience and flexibly meet any set OS objectives.
+ls					It is a list command and will display the directories and files visible under the present working directory
+ls -R					Goes a step further to display or list files in sub-directories of the present working directory
+ls -a					The argument -a in this list command helps list all the hidden files in the present working directory
+ls -al					The argument -al in this list command gives a detailed list of the displayed files and directories with extra information such as size, permission, owner, etc.
+cd	(or)	cd 	~		Takes you to the Home directory of your Linux operating system
+cd ..					navigates you backwards to the parent directory of the current directory you are under.
+cd					Combine it with a target directory under the present working directory to navigate to it e.g cd Downloads
+cd /					Takes you to the root directory of your Linux operating system
+cat > filename				It will create a file called filename
+cat filename				It will display the contents of a file called filename
+cat file_1 file_2 > file_3
+					Joins the content of file_1 and file_2 and copies the result to a newly created file_3
+mv file_random "defined file path"
+					It will move the file called file_random to the target file path or destination you will define.
+mv file_name new_filename
+					It will rename the file called file_name to a new file name called new_filename
+sudo					A command used by sudoer users to execute privileged commands applicable to a root user or superuser.
+rm filename				It will delete a file called filename
+man					Use it with a Linux command you do not understand to get help on how to use it. E.g man sudo
+history					It will display a list of the previous Linux terminal commands you have executed under that specific session.
+clear					It will clear your command-line interface if you feel it is too crowded.
+mkdir directory_name			It will create a director called directory_name
+rmdir my_directory			It will delete a directory called my_directory
+mv					You can use it to rename a directory or a file
+pr -x					It will divide or split a file to x defined columns.
+pr -h					Use it to add a header to a target file.
+pr -n					Uses Line numbers to denote a target user file.
+lp -nc, lpr c				It is a printing function and in this case it will print c copies of a target file.
+lp -d lp -P				Helps you identify the name of the printer you are using.
+apt or apt-get				A Debian distro package command for installing system updates and package applications
+mail -s 'mail_subject' -c 'cc-mail_address' -b 'bcc-mail_address' 'to-mail_address'	
+					Use this command to send an email from the terminal.
+mail -s "mail_subject" to-mail_address < attachment_filename
+					Use this command to also send an email from the terminal but this time with an attachment.
+--------------------------------------						
+					
+
+
+---->01. Linux Commands for System Information<----
+Description:	You will find these commands useful when you want to query specific information about your Linux system.
+uname -a				Displays basic system information like machine name and the supported operating system architecture.
+uname -r				Outputs the kernel release information like the kernel version.
+lsb_release -a				If you are using any Linux distro, this command displays its Distributor ID, Description, Release, and Codename.
+uptime					Outputs how long your Linux system has been active together with the load average of this duration.
+hostname				Outputs your system's hostname or the name you have given your Linux machine
+hostname -I				Outputs the assigned IP address your system is currently using depending on the network connection it is under.
+last reboot				A useful command for you to gauge how many times your system restarted.
+date					Useful in displaying the current date and time.
+timedatectl			Query and change the System clock
+cal					Outputs the present month's calendar.
+w					Lets you know who or which systems are online especially if you are in a large network.
+whoami					Outputs the name of the current user using the Linux system
+finger username			Displays information about the user
+--------------------------------------						
+
+
+					
+---->02. Linux Commands for Files & Permissions<----
+Description:	File permissions in Linux relate to Read (r), Write (w), and Execute (x) privileges. 
+		They employ changes associated with directory and file ownership. This ownership privilege can apply to a specific user, a user group, or other user levels defined within the Linux system.
+ls -l					Outputs the file type and the file permissions needed to access the target file.
+chown root /u				In this command, the ownership of /u is transferred to the root user.
+chown user:group file_name		The user and group privileges linked to file_name are changed.
+chmod 777 [file_name]			Everyone access the file called file_name will have read, write, and execute permissions.
+chmod 755 [file_name]			The owner of the file called file_name will have read, write, and execute permissions while other users will only have read and execute 					permissions.
+chmod 766 [file_name]			The owner of the file called file_name has complete access to it while group and other users can only read and execute.
+chown [user] [file_name]		The ownership of the file called file_name is assigned or changed to a new owner called user.
+chmod -c -R				Assign a file the read, write, and execute permissions.
+touch -a -t				Useful in creating or modifying a file timestamp.
+chown -c -R				Useful in changing the ownership of an assigned or owned file.
+chgrp -c -R				Useful in changing the group permission of a file.
+--------------------------------------
+
+
+
+---->03. Linux Commands for Networking<----
+Description:	Under a Linux operating system, it is almost impossible not to cross paths with network-related tasks. The following commands will be useful along the way.
+SSH username@ip_address or hostname	Enables SSH login or sign-in to a remote Linux machine by specifying the machine's username and IP address.
+ping hostname				Useful in analyzing the responsiveness of a hostname connected to a network.
+dir					Helps you view files under a remote computer's active directory.
+cd "dir_name"				Access a directory called dir_name on a remote computer.
+put filename				It will upload a file called filename from your local computer to a target remote computer.
+get filename				It will download a file called filename from a specified remote computer to your local machine.
+quit					Logout from a remote connection.
+ping -c hostname			It will print a routing packet trace associated with the targeted hostname or IP address
+ssh -i					Grants user access to openSSH client.
+tcpdump					Used to dump network traffic.
+telnet					Grants access to the TELNET protocol's user interface.
+netstat -r -v				Prints network routing, information, and connections.
+ip addr show				Outputs network interfaces and their related IP addresses.
+ip address add [IP_address]		Used under interface eth0 to assign an IP address.
+ifconfig				Outputs configured network interfaces' IP addresses.
+netstat -pnltu				A netstat command for revealing active or listening ports on a network.
+netstat -nutlp				A netstat command for displaying udp and tcp ports.
+whois [domain_name]			Reveals more information regarding an active domain name on the internet.
+dig [domain_name]			Reveals DNS information and configuration regarding an active domain name.
+dig -x host				It is applicable when dealing with DNS and will reverse lookup an active domain.
+dig -x [IP_address]			It is also applicable when dealing with DNS and will reverse lookup an active IP address.
+host domain_name			It will lookup the IP address of an active domain
+host -I hostname			It will output the local IP address of the specified hostname with other additional useful information.
+wget [file_name]			Useful in downloading a file from a specified domain name storage directory.
+ifconfig -a				Outputs all the network interface details of a system with inclusion to the IP address.
+ifconfig eth0				Outputs eth0 configuration and address details.
+ethtool eth0				Used to manage hardware and network drivers query and control settings
+--------------------------------------
+
+
+
+---->04. Linux Commands for Archives and File Compression<----
+Description:	You will never fail to come across file archives or files in a compressed state within the Linux operating system environment. The following commands will be 			useful.
+tar xvfz				Used for creating or extracting files with .tar or .tgz extensions.
+gzip, gunzip, zcat filename		Used in creating, extracting. or viewing files with .gz extension
+gzip file 					Compression a file with .gz extension
+uuencode, uudecode			Used in creating or extracting files with .Z extension.
+zip, unzip -v				Used in creating or extracting files with .Zip extension.
+rpm					Used in creating or extracting files with .rpm extension.
+bzip2, bunzip2				Used in creating or extracting files with .bz2 extension.
+rar					Used in creating or extracting files with .rar extension.
+tar cf [compressed_filename.tar] [file_name]	
+					This command creates an tar archive called compressed_filename for the file_name file.
+tar -cf home.tar home<:code>	Creates archive file called 'home.tar' from file 'home'
+tar xf [compressed_filename.tar]	This command extracts the tar archive called compressed_filename.
+tar -xf files.tar             	Extract archive file 'files.tar'
+tar czf [compressed_filename.tar.gz]	This command compresses a tar file into a gzip archive.
+tar cf my_archive.tar directory		This command creates a tar archive called my_archive with a directory in it.
+tar xzf my_archive.tar.gz		This command extracts a compressed tar file inside a gzip archive
+tar cjf archive.tar.bz2 director	This command compresses a tar file inside a bz2 archive.
+tar xjf archive.tar.bz2			This command extracts a tar file compressed inside a bz2 archive.
+tar -zcvf home.tar.gz source-folder
+							Creates gzipped tar archive file from the source folder
+--------------------------------------
+
+
+
+---->05. Linux Commands for Installing Packages<----
+Description:	You will never fail to come across file archives or files in a compressed state within the Linux operating system environment. The following commands will be 			useful.
+yum search [keyword]	Trace a package installation based on specific keywords.
+yum install package.rpm	The use of a YUM package manager to install and configure a package.
+yum info package		The use of the YUM package manager to find more information about a package before optionally proceeding with its installation.
+yum remove package		Using the YUM package manager to uninstall or remove a package from your system.
+rpm -i package.rpm		Using the RPM package manager to install a downloaded package.
+rpm -e package.rpm		Using the RPM package manager to remove or uninstall an rpm package
+dnf install package.rpm	Using the DNF package manager to install a package software.
+
+tar zxvf 				Command sequence to install a package software that comes as a source code.
+sourcecode.tar.gz
+cd sourcecode
+./configure			Checks your system for the required software needed to build the program. It will build the Makefile containing the instructions required to effectively build the project
+make				It reads the Makefile to compile the program with the required operations. The process may take some time, depending on your system and the size of the program
+make install		The command installs the binaries in the default/modified paths after the compilation
+
+apt install package		Using the APT package manager to install a package software.
+--------------------------------------
+
+
+
+---->06. Linux Search Commands<----
+Description:	The commands in this category effectively deal with file patterns, sizes, and even their naming conventions.
+grep [pattern] [file]		Employs a specific pattern to search the contents of a file.
+grep 'pattern' files		Search for a given pattern in files
+grep -r [pattern] [directory_name]	
+				Recursively or repeatedly searches within a specified directory for a defined pattern match.
+grep -r pattern dir      Search recursively for a pattern in a given directory
+locate [name]			It will track and locate directories and files based on a name identity.
+locate file 			Find all instances of the file
+find /home/ -name "index" 	Find file names that begin with 'index' in /home folder
+find [/path/to/folder/location] -name [a]	
+				Traces a specific system directory location then queries the names of its files and folders based on a character match. In this case [a]
+find [/path/to/folder/location] -size [+100M]
+				It will trace a system directory location and list the files within it that are bigger than 100 M in size.
+find /home/FossLinux -name 'prefix*'
+				Traces a specified system path for files with a matching prefix.
+find /home -size +10000k
+				Find files greater than 10000k in the home folder
+--------------------------------------
+
+
+
+---->07. Linux Commands for SSH Logins<----
+Description:	SSH logins are useful when you want access to remote computers or servers. These commands give you undisputed flexibility in file access, management, and 			manipulation.
+ssh username@hostname		Connects you to a remote machine or server based on a valid username and hostname or IP address.
+ssh host			Connects you to a specified host through the default port 22.
+ssh -p [port] username@hostname	
+				Connects you to a remote machine or server through a specified port.
+telnet hostname			Uses telnet's default port 23 to connect you to a target hostname, remote machine, or server.
+--------------------------------------
+
+
+
+---->08. Linux Commands for File Transfers and Management<----
+Description:	To transfer a file, directory, or folder from one system path to another. These file management commands ensure that you won’t have to be switching from the 			command-line interface to the desktop graphical interface each time you feel like making a file or directory change or query.
+find				This command is useful when you need to find a specific file
+ls -a -C -h			Lists or displays the content of an active directory.
+rm -r -f			Used to remove or delete active files and directories instances.
+locate -i			Uses updateddb(8) to track and find files on your system.
+cp -a -R -i			Used to copy directories or files from an active directory instance.
+du -s				Give important information regarding the disk usage (storage space) on your Linux system. It is efficient when combined with the Sudo command.
+file -b -i			Helps identify the type of file on your system.
+mv -f -i			Used for moving directories or files to a different system path or location.
+grep, egrep, fgrep -i -v	Useful in printing lines with a matching pattern.
+scp file.txt server:/tmp	Uses secure copy command to copy file to a remote server. In this case the tmp folder
+scp server:/var/www/*.html /tmp	
+				Uses secure copy command to copy files from a remote server to a directory on a local machine. In this case it will copy all files with the .html 				  extension.
+scp -r server:/var/www /tmp	It will recursively copy all the files and directories on a remote server's active directory to a target machine directory. In this case the tmp  				  directory
+rsync -a /home /backups/	Synchronizes the content of two directories (/home and /backups) on the same machine.
+rsync -avz /home server:/backups/
+				It synchronizes the content of an active director on a local machine with the content of an active directory on a remote server.
+--------------------------------------
+
+
+
+---->09. Linux File and Directory Commands<----
+Description:	To transfer a file, directory, or folder from one system path to another. These file management commands ensure that you won’t have to be switching from the command-line interface to the desktop graphical interface each time you feel like making a file or directory change or query.
+ls				It will list the files and directories under an active director path.
+ls -a				Lists only active files, but in a long and detailed list.
+pwd				Reveals the present directory you are working under.
+mkdir [dir_name]		It will create a directory with the specified name.
+rm [filename]			It will delete a file with the specified name.
+rm -r [directory_name]		It will delete a directory with the specified name.
+rm -rf [directory_name]		It will recursively and forcefully delete a directory with the specified name.
+cp filename1 filename2		It will copy the contents of filename1 to filename2
+cp -r [directory1] [directory2]
+				It will recursively copy the content of directory1 to directory2
+mv filename1 filename2		It will rename filename1 to filename2
+ln -s /path/to/[file_name] [link_name]
+				Use this command to create a symbolic link (link_name) to a specified file name (file_name).
+touch [filename]		Used to create a new file with a specified extension.
+more [filename]			It will open and display the contents of a specified file.
+cat [filename]			It will also open and display the contents of a specified file.
+cat filename1 >> filename2	It appends or adds the content of filename1 at the bottom of filename2.
+head filename			Outputs the first ten lines of a specified file name.
+tail filename			Outputs the last ten lines of a specified file name.
+gpg -c filename			Used to encrypt a specified file.
+gpg filename.gpg		Used to decrypt a specified file with a .gpg extension.
+wc filename			Outputs number of bytes, lines, and words of a specified file name.
+less filename			This command enables a user to browse through the content of a text file
+tail -f filename		Not only outputs the last 10 lines of a specified file but also follows the growth progress of this file when more content is added to it.
+cd				Takes you to the Home directory of our Linux system
+cd ..				Takes you to the previous active directory or one level up.
+cd /target/directory		Navigate to the location of a specific directory name.
+xargs					Executes commands from standard input
+--------------------------------------
+
+
+
+---->10. Linux Commands for Disk Utilities and Usage<----
+Description:	It is also important to know how to interact with the various hardware components that connect with your Linux system.
+df -h				Works with mounted systems to reveal their free and used space.
+df -i				Works with mounted systems to reveal their free inodes. These inodes hold disk block location data an other attributes.
+fdisk -l			Reveals disk information like types, sizes, and partitions.
+du -ah				Outputs files and directories disk usage.
+du -sh				Outputs your currently active directory's disk usage.
+findmnt				Outputs the target mount point associated with all your file system.
+mount device_path mount_point	Use this command syntax to mount a device.
+mkfs -t -V			Use this command to create a new file system.
+resize2fs			Used for updating a file system, especially after lvextend*
+fsck -A -N			Used to check and repair a file system.
+pvcreate			Used for creating a physical volume.
+mount -a -t			Used for mounting a file system.
+lvcreate			Used for creating a logical volume.
+unmount -f -v			Used for unmounting a mounted file system.
+--------------------------------------
+
+
+
+---->11. Linux Commands for Environment Variables<----
+Description:	An environment variable describes the environment behavior of your operating system. The usage and description of the following commands make more sense to this  		  definition.
+echo $Variable_name		Outputs the value of a defined variable on the terminal.
+env				Outputs data related to all environment variables.
+variable_name = variable_value	Use this command syntax to assign a variable name with a variable value.
+Unset				Used to remove or get rid of a variable.
+export Variable = value		Used to assign an environment variable a new value.
+--------------------------------------
+
+
+
+---->12. Linux Commands for System Processes Management<----
+Description:	If you are looking for an internal grip or understanding of how your Linux operating system relays its functions and operations, then the following commands will  		   be useful.
+bg				Sends a running process to execute in the background.
+fg				Sends a stopped or halted process to keep executing on the foreground.
+fg n			Job n to the foreground
+top				Outputs all active processes details.
+htop				It is an interactive process viewer command.
+ps				Outputs a running process's status to a system user.
+ps -ef				Outputs all active or executing processes on the Linux system.
+ps -ef | grep process_name	Outputs the running process information for a specified process name.
+ps PID				Outputs a running processes's status in reference to its process ID.
+ps aux				Outputs a snapshot of the current running processes.
+pidof				Reveals the process ID of a specified process.
+pmap				Displays memory map of processes
+nice				Grants execution rights to a process with an assigned priority.
+renice				Changes or alters the execution priority of an already running system process.
+df				Outputs free and used storage information regarding the system's hard disks.
+free				Outputs information about the system RAM's and swap's free and used memory.
+free -m				Also outputs information about the system RAM's and swap's free and used memory.
+killall				Stops all the actively executing processes by their process names.
+killall process_name		Will stop a running process based on the process name.
+kill PID			Kills a running process based on its process ID.
+pkill process-name	Sends a signal to a process with its name
+sensors				Outputs the Linux system's CPU temperature.
+top				Outputs actively running processes and provides an interface for real-time monitoring of these processes.
+kill -1 -9			Used to send a signal to a running process.
+service [start|stop|restart]	Used for managing system services through an executable sysV init script. You can start, stop, or restart the specified system service.
+
+dmesg -k			Outputs system messages. Helps in troubleshooting the health status of your Linux system.
+program &			Executes a program in the system background.
+fg n				Moves a running job n to the system's foreground.
+--------------------------------------
+
+
+
+---->13. Linux Commands for VI Editing<----
+Description:	The command sequences related to the VI editor let you manage your files from the terminal without seeking a text editing app with a graphical interface. VIM is an improved version of this editor with additional features. The VIM editor absorbs all the implementation of the VI editor’s commands.
+vi				launch the VIM editor.
+:q!				quit the editor without saving the implemented changes.
+:wq				quit the editor and also make changes to the open file.
+i				Takes the editor to insert mode and initiates a cursor.
+a				An insert mode that enables the system user to write their input after a cursor.
+A				An insert mode for writing at the end of the line.
+ESC key				Used to exit the insert mode.
+u				Undo Vim command for the last change.
+U				Undo Vim command for an entire line.
+o				Insert mode for opening a new line.
+dd				Vim command to delete a line.
+3dd				Vim command to delete three lines.
+D				Vim command to delete line content(s) that follow or succeed the cursor.
+C				Vim command to delete line content(s) that follow or succeed the cursor and additionally allows the system user to insert new text.
+dw				Vim command to delete a word.
+4dw				Vim command to delete four words.
+cw				Vim command to change a word.
+x				Vim command for character deletion at the cursor.
+r				Vim command to replace a character.
+R				With this command, all the characters succeeding the cursor are overwritten.
+s				Command to substitute a single character under cursor and then continues to insert mode.
+S				Command to substitute an entire line and then initiate insert mode at the beginning of that same line.
+~				Vim command to change the case (upper or lower) of individual characters.
+--------------------------------------
+
+
+
+---->14. Linux Commands for File Editors<----
+Description:	You can use the following Linux command shortcuts to access your favorite file editor without the need to navigate to the Graphical User Interface to launch them
+ex				Launches a basic editor.
+vi				Launches visual editor.
+nano				Launches the GNU nano editor.
+view				Launches an editor in view or read-only mode.
+emacs				Launches emacs, an extensible and customizable system editor.
+sublime				Launches sublime text editor.
+sed				Launches stream editor.
+pico				Launches pico, a simple editor.
+--------------------------------------
+
+
+
+---->15. Linux Commands for File Utilities<----
+Description:	There is more to how you can interact with files on a Linux operating system. These Linux commands paint a clearer picture.
+tr -d				Command for translating or deleting a character.
+uniq -c -u			Command for reporting or omitting repeated lines.
+split -l			Command for splitting a file into segments.
+wc -w				This command prints the number of bytes, words, and newlines on a specified file.
+head -n				Outputs the first few contents of a specified file.
+cut -s				Removes or deletes a file's section.
+diff -q				Command to compare files line by line.
+join -i				Given that two files have a common field, this command will join the lines of these files.
+more, less			Enables a system user to view the contents of a file, a single file page view at a time.
+sort -n				Command to sort the lines within a text file.
+comm -3				After two files are sorted, this command can be used to sort them line by line.
+cat -s				Command to concatenate or link files to a specific standard output.
+tail -f				Command to output the last portion of a file.
+--------------------------------------
+
+
+
+---->16. Linux Commands for Scripting<----
+Description:	Once your skillset on using the Linux operating system improves with time, you might be inspired to scribble some scripts from your OS environment. These commands apply both to the scripting languages you might be familiar with and the scripting environment setup to make your Linux OS life as comfortable as possible.
+awk, gawk			Command for pattern scanning.
+tsh				Command to launch tiny shell.
+""				Instances or declarations within this double quote remain unchanged except for $ and \
+''				Instances or declarations within this single quote remain unchanged.
+python				Command to launch the Python programming language shell.
+bash				Command for the bash shell
+ksh				Command for the ksh shell.
+php				Command to launch php shell.
+csh, tcsh			Commands to launch csh or tcsh shell.
+perl				Command to launch perl shell instance.
+source [file]			Command to load an executable functions file to an active shell.
+--------------------------------------
+
+
+
+---->17. Linux Commands for Hardware Information<----
+Description:	What if you want to know how your hardware is performing under a Linux operating system environment? Consider the use of the following commands.
+dmesg				Outputs the kernel ring buffer messages.
+cat /proc/cpuinfo		Outputs CPU information of your machine.
+cat /proc/meminfo		Outputs Memory information of your machine.
+free -h				Outputs both free and used machine memory info.
+free -m				Outputs both free and used machine memory info. (-m flag indicates memory in MB)
+lshw				Outputs the system's hardware configuration information.
+lsblk				Outputs the system's block devices information.
+lspci -tv			Outputs the system's PCI devices.
+lsusb -tv			Outputs the system's USB devices.
+dmidecode			Outputs the system's hardware information on DMI/SMBIOS related to the BIOS.
+hdparm -i /dev/disk		Outputs a specified disk data information.
+hdparm -tT /dev/[device]	Used with a specified system disk to output its read speed test performance.
+badblocks -s /dev/[device]	Used to reveal and test unreadable blocks on a specified disk sda.
+--------------------------------------
+
+
+
+---->18. Linux Commands for Performance Monitoring and Statistics<----
+Description:	It helps to statistically assess how the Linux OS is adapting to its hardware environment.
+mpstat 1			Outputs processor-related statistics.
+vmstat 1			Outputs statistical data related to the system's virtual memory.
+iostat 1			Outputs I/O (Input/Output) statistics.
+lsof				Outputs all the system's open files.
+lsof -u user			Outputs a list of all the files opened by a system user.
+watch df -h			A command to output periodic system updates.
+tail 100 /var/log/messages	Command to output the most recent 100 syslog messages. 
+				The Debian systems equivalent of this command is /var/log/syslog
+tcpdump -i eth0			An interface eth0-related command for outputting captured packets.
+tcpdump -i eth0 'port 80'	Command for monitoring traffic through port 80
+--------------------------------------
+
+
+
+---->19. Linux Commands As Keyboard Shortcuts<----
+Description:	To be good at these commands, you only need to master a few keyboard strokes.
+Ctrl + C			Command to kill a running process.
+Ctrl + Z			Command to stop a currently active process.
+Ctrl + W			Command to cut a single word preceding the cursor.
+Ctrl + U			Command to cut a line fragment preceding the cursor.
+Ctrl + K			Command to cut a line fragment succeeding the cursor.
+Ctrl + Y			Command to paste from clipboard.
+Ctrl + R			Command to recall the last used command.
+Ctrl + O			Command to execute the previously recalled command.
+Ctrl + G			Command to exit command history.
+!!				Command to execute a previously executed command.
+exit				Command to sign off from an active session.
+--------------------------------------
+
+
+
+---->20. Linux Misc Commands<----
+Description:	These are miscellaneous commands that are also useful in further improving your Linux operating system’s user experience.
+date -d				Command to print formatted date.
+'[command_name]			A backquote to execute a specified command.
+export				A command for assigning or removing an environment variable.
+cal				Command to print a calendar.
+expr				A command used to evaluate an expression.
+bc				Launches a high-precision calculator shell.
+pwd -P				Reveals the current system directory you are under.
+--------------------------------------
+
+
+
+---->20. Linux Misc Commands<----
+Description:	These are miscellaneous commands that are also useful in further improving your Linux operating system’s user experience.
+id				Displays the details of the active user e.g. uid, gid, and groups
+last			Shows the last logins in the system
+who				Shows who is logged in to the system
+groupadd "admin"	Adds the group 'admin'
+adduser "Sam"		Adds user Sam
+userdel "Sam"		Deletes user Sam
+usermod			Used for changing / modifying user information
+--------------------------------------

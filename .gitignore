@@ -1,0 +1,30 @@
+# Files to exclude from source control
+# Generated files
+
+#Load Runner Script specifics
+# Ref: http://loadrunnertips.com/VuGen/loadrunner_files.html
+# Ref: https://www.myloadtest.com/loadrunner-gitignore/
+*.bak
+*.c.pickle
+*.ci
+*.idx
+*.log
+*.sdf
+*/result[1234567890]*/
+combined_*.c
+logfile.log
+mdrv_cmd.txt
+mdrv.log
+options.txt
+output.txt
+output.bak
+pre_cci.c
+Bookmarks.xml
+Breakpoints.xml
+CompilerLogMetadata.xml
+ReplaySummaryReport.xml
+UserTasks.xml
+#specific secrets
+Keys.js
+# Windows litter
+ThumbnailsCache*
