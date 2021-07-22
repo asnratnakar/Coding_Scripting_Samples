@@ -1,0 +1,39 @@
+
+https://stackoverflow.com/questions/12472645/how-do-i-schedule-jobs-in-jenkins
+
+
+Jenkins used a cron expression, and the different fields are:
+
+MINUTE (0-59), HOUR (0-23), DAY (1-31), MONTH (1-12), DAY OF THE WEEK (0-6)
+
+MINUTES Minutes in one hour (0-59)
+HOURS Hours in one day (0-23)
+DAYMONTH Day in a month (1-31)
+MONTH Month in a year (1-12)
+DAYWEEK Day of the week (0-7) where 1- Mon, 2 - Tue, 3 - Wed, 4 - Thu, 5 - Fri, 6 - Sat, 0 & 7 - Sun
+	
+	Note: Avoid "7" for day of the week i.e: Use * * * * 6, instead of * * * * 7
+
+
+To allow periodically scheduled tasks to produce even load on the system, the symbol H (for “hash”) should be used wherever possible.
+The H symbol can be thought of as a random value over a range, but it actually is a hash of the job name, not a random function, so that the value remains stable for any given project.
+
+
+Examples:
+0. For example, using 0 0 * * * for a dozen daily jobs will cause a large spike at midnight. 
+   In contrast, using H H * * * would still execute each job once a day, but not all at the same time, better when using limited resources.
+1. Start build daily at 08:30 in the morning, Monday - Friday: 30 08 * * 1-5
+2. Weekday daily build twice a day, at lunchtime 12:00 and midnight 00:00, Sunday to Thursday: 00 0,12 * * 0-4
+3. Start build daily in the late afternoon between 4:00 p.m. - 4:59 p.m. or 16:00 -16:59 depending on the projects hash: H 16 * * 1-5
+4. Start build at midnight: @midnight or start build at midnight, every Saturday: 59 23 * * 6
+5. Every first of every month between 2:00 a.m. - 02:30 a.m.: H(0,30) 02 01 * *
+6. Build every 5 minutes: */5 * * * *
+   Build at 5th Minute of every hour: 5 * * * *
+7. Build every day at 8:00AM: 0 8 * * *
+8. Build every day at 1:15PM: 15 13 * * *
+9. Build every day at 7:00AM: H 7 * * *
+10. Build every Saturday at 4:00PM: H 16 * * 0
+11. Build @Hourly every hour: 0 * * * * (or) H * * * *
+12. Build @Daily at @midnight: 0 0 * * * (or) H H * * *
+13. Build @Weekly at @midnight: 0 0 * * 0 (or) H H * * H
+14. Build @Monthly on 1st at @midnight: 0 0 1 * * (or) H H 1 * *
