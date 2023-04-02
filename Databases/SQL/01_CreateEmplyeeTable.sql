@@ -41,15 +41,3 @@ call insertRowsToemployeeTable();
 select * from employeeTable;
 -- OR 
 EXECUTE insertRowsToemployeeTable()
-
-
-
-
-
-
-
-
-
-SELECT ROW_NUMBER() OVER (ORDER BY Id) AS employeeNumber,* FROM employeeTable
-
-
